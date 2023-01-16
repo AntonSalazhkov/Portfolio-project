@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  postgres-13.7:
+    image: postgres:13.7
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "1234"
+    ports:
+      - "5435:5432"
+  
+  configserver:
+    build: ./configserver
+    depends_on:
+      - postgres-13.7
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+
+  news-api:
+    build: ./news-api
+    depends_on:
+      - configserver
+      - postgres-13.7
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
