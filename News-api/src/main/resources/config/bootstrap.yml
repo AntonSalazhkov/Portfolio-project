@@ -1,0 +1,17 @@
+spring:
+  application.name: news-api
+#  profiles.active: local
+  profiles.active: prod
+  cloud:
+    config:
+#      uri: http://localhost:8888
+      uri: http://192.168.0.101:8888
+      enabled: true
+      failFast: true
+
+---
+spring:
+  profiles: local
+  cloud:
+    config:
+      enabled: false

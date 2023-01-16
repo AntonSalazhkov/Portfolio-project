@@ -1,0 +1,10 @@
+spring:
+  application.name: news-api
+  profiles.active: test
+
+---
+spring:
+  profiles: test
+  cloud:
+    config:
+      enabled: false
